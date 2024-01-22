@@ -1,0 +1,59 @@
+.panel{
+    font-family: 'Comic Sans MS', cursive;
+    color: white;
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 60px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 0px );
+    -webkit-backdrop-filter: blur( 0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+#YesBtn{
+    font-family: 'Comic Sans MS', cursive;
+
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+#NoBtn{
+    transition: .5s;
+    background-color: dodgerblue;
+    padding: 10px;
+
+}
+#NoBtn:hover{
+    transition: .5s;
+    background-color: salmon;
+    padding: 10px;
+    left: 200px;
+    
+}
+.image-container {
+    position: relative; /* set container to a relative position */
+    width: 500px; /* set your desired width */
+    height: 500px; /* set your desired height */
+  }
+  
+  .button {
+    position: absolute; /* set button to an absolute position */
+    top: 50%; /* adjust the top position of the button */
+    left: 50%; /* adjust the left position of the button */
+    transform: translate(-50%, -50%); /* center the button */
+    z-index: 2; /* set a higher z-index than the image */
+    background-color: #007bff; /* set your desired background color */
+    color: #fff; /* set your desired text color */
+    border: none; /* remove button border */
+    padding: 10px 20px; /* set your desired padding */
+    cursor: pointer; /* change mouse cursor on hover */
+  }
+#myButton{
+    position: relative;
+}
+span{
+    font-size:60px
+}
