@@ -1,14 +1,95 @@
-<div id="display" style="display: none; text-align: center;"> display me</div>
+
+<div class="container">
 
 
-<div class="panel">
+<div id="panel" style="display: block;">
   <h1 style="text-align: center;"><span>Hello Honey!</span> <img src="../assets/honey.png" height="60px;" style=" vertical-align: middle ; margin-left: 5px;">  </h1>
 
-  <p>Are you free Feb 14th 2024?</p>
+  <p style="text-align: center;">Are you free Feb 14th 2024?</p>
   <div style="display: flex; justify-content: space-between;">
-    <button (click)="sendYes()">Yes</button>
+    <button (click)="sendYes()" id="YesBtn">Yes</button>
     <button id="NoBtn" (mouseenter)="handleHover()" (click)="displayText()">No</button>
   </div>
 
+</div>
+<div style="text-align: center; display: none;" id="secondPhase">
+  <h1 ><span>Where would you like to eat?</span> <img src="../assets/bibimbap.png" height="80px" style="vertical-align: middle; margin-left: 5px;"></h1>
+  <div style="display: flex; flex-direction: column;">
+    <div *ngFor="let place of foodPlaces">
+    <div *ngFor="let p of place| keyvalue">
+    <button  *ngIf="p.key === 'YAMSHIRO'; else elseBlock"style="margin: 1rem;" class="styleBtns2" id="{{p.key}}" (click)="sendPlaceConfirmation(p.key)">{{p.key}} (NEW SPOT!!)</button>
+    <ng-template #elseBlock>
+      <button  style="margin: 1rem;" class="styleBtns2" (click)="sendPlaceConfirmation(p.key)" id="{{p.key}}">{{p.key}}</button>
+    </ng-template>
+    <img src="../assets/information.png" height="30px" (click)="openWindow(p.value)">
+    <!-- <a href="p.value"><img src="../assets/information.png" height="30px"></a> -->
+  </div>
+</div>
+  </div>
+  <button style="float: right; margin-right: 1rem; margin-bottom: 1rem;" class="styleBtns" (click)="goPhaseThree()">Next</button>
+</div>
+
+
+<div id="thirdPhase" style="display: none;">
+  <h1 style="text-align: center;">Great Choice!  </h1>
+  <h1 style="text-align: center;">I Would Love {{selectedPlace}} <img src="../assets/exclamation-mark.png" height="30px"><img src="../assets/exclamation-mark.png" height="30px"></h1>
+  <h1 style="text-align: center;"> What Would You Like After?</h1>
+  <div style="display: flex; flex-direction: row; justify-content: center;">
+  <div *ngFor="let attire of styles" >
+   
+      <div *ngFor="let selection of attire|keyvalue"  class="card" style="text-align: center;" (click)="setDessertOption(selection.key)" id="{{selection.key}}" >
+        <h2>{{selection.key}} </h2>
+        <img src="{{selection.value}}" height="40px">
+      </div>
+  </div>
+</div>
+  <button class="styleBtns" style="float: left; margin-left: 1rem;" (click)="backToFoodSelection()" > back</button>
+  <button class="styleBtns" style="float: right; margin-right: 1rem;" (click)="goPhaseFour()" > next</button>
+
+</div>
+
+<div id="fourthPhase" style="display: none;">
+  <div style="text-align: center;">
+  <h1>{{selectedPlace}} and {{selectedDessert}} </h1>
+  <h1>I Am So Excited! <img src="../assets/champagne.png" height="50px" style="vertical-align: middle;"></h1>
+  <h1>What Time Can I Pick You Up? </h1>
+  <div>
+    <button class="styleBtns2" style="margin-left: 1rem;" *ngFor="let time of availableTimes" (click)="pickUpTime(time)" id="{{time}}">{{time}}</button>
+  </div>
+  <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 1rem;">
+    <button class="styleBtns" (click)="goBackToDessert() " style="margin-left: 1rem;" >Back</button>
+    <img src="../assets/sport-car.png" height="70px">
+    <button class="styleBtns"(click)="goReview()" >Next</button>
+
+  </div>
+</div>
+</div>
+<div id="joke" style="display: none; text-align: center;">
+    <h1>After Our Date? <img src="../assets/emoji.png" height="50px" style="vertical-align: middle;"></h1>
+    <div style="display: flex; flex-direction: row;">
+    <div class="card2">
+      <h1>My House</h1>
+      <img src="../assets/new-house.png" height="100px">
+    </div>
+    <div class="card2">
+      <h1>Your House</h1>
+      <img src="../assets/home.png" height="100px">
+    </div>
+    </div>
+    <h3 style="font-style: italic; font-family: 'Comic Sans MS', cursive;">Just Kidding HaHa!</h3>
+</div>
+<div id="review" style="display: none;" >
+    <div style="text-align: center;" class="receipt">
+      <h1>Confirmation:</h1>
+      <h2>Date: February 14th, 2024</h2>
+      <h2>Main Course: {{selectedPlace}}</h2>
+      <h2>Dessert: {{selectedDessert}}</h2>
+      <h2>Time: {{selectedTime}}</h2>
+      <h3>If everything is correct please take a picture and send me back your response &#9829; </h3>
+        <button class="styleBtns" (click)="goBackToTime()">Back</button>
+   
+    </div>
+
+</div>
 </div>
 
